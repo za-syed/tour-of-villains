@@ -16,22 +16,38 @@ var HeroesComponent = (function () {
     function HeroesComponent(heroService, router) {
         this.heroService = heroService;
         this.router = router;
+        this.powers = ['Flying', 'Invisibility', 'Fire', 'Immortality', 'Super Strength'];
+        this.model = { id: 0, name: "" };
     }
     HeroesComponent.prototype.getHeroes = function () {
         var _this = this;
         this.heroService
             .getHeroes()
-            .then(function (heroes) { return _this.heroes = heroes; });
+            .then(function (heroes) {
+            _this.heroes = heroes;
+            _this.model.id = _this.getLastID();
+        });
+        //this.hero.id = this.getLastID();
     };
-    HeroesComponent.prototype.add = function (name) {
+    // add(name: string): void {
+    //   name = name.trim();
+    //   if (!name) { return; }
+    //   this.heroService.create(name)
+    //     .then(hero => {
+    //       this.heroes.push(hero);
+    //       this.selectedHero = null;
+    //     });
+    // }
+    HeroesComponent.prototype.add = function () {
         var _this = this;
-        name = name.trim();
-        if (!name) {
+        //name = name.trim();
+        if (!this.model) {
             return;
         }
-        this.heroService.create(name)
+        this.heroService.create(this.model)
             .then(function (hero) {
-            _this.heroes.push(hero);
+            //this.heroes.push();
+            _this.getHeroes();
             _this.selectedHero = null;
         });
     };
@@ -54,6 +70,17 @@ var HeroesComponent = (function () {
     };
     HeroesComponent.prototype.gotoDetail = function () {
         this.router.navigate(['/hero-detail', this.selectedHero.id]);
+    };
+    HeroesComponent.prototype.getLastID = function () {
+        var max = 0;
+        this.heroes.forEach(function (member, index) {
+            // console.log(member, index);
+            if (member.id > max) {
+                max = member.id;
+                // console.log("Max now: " + max);
+            }
+        });
+        return max += 1;
     };
     return HeroesComponent;
 }());

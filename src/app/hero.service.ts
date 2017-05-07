@@ -25,7 +25,12 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Hero)
+      .then((response)=>{
+        console.log(response.json().data );
+        return response.json().data as Hero;
+      },(error)=>{
+        console.log(error);
+      })
       .catch(this.handleError);
   }
 
@@ -37,11 +42,23 @@ export class HeroService {
       .catch(this.handleError);
   }
 
-  create(name: string): Promise<Hero> {
+  // create(name: string): Promise<Hero> {
+  //   return this.http
+  //     .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
+  //     .toPromise()
+  //     .then(res => res.json().data as Hero)
+  //     .catch(this.handleError);
+  // }
+   create(hero: Hero): Promise<Hero> {
     return this.http
-      .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .post(this.heroesUrl, JSON.stringify({id:hero.id, name:hero.name,power:hero.power}), {headers: this.headers})
       .toPromise()
-      .then(res => res.json().data as Hero)
+      //.then(res => res.json().data as Hero)
+      .then((res)=>{
+        res.json().data as Hero;
+      },(err)=>{
+
+      })
       .catch(this.handleError);
   }
 

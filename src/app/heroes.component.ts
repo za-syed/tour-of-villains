@@ -11,7 +11,9 @@ import { HeroService }         from './hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
+  powers:string[]=['Flying','Invisibility', 'Fire', 'Immortality','Super Strength'];
   selectedHero: Hero;
+  model:Hero ={id: 0, name:""};
 
   constructor(
     private heroService: HeroService,
@@ -20,15 +22,30 @@ export class HeroesComponent implements OnInit {
   getHeroes(): void {
     this.heroService
         .getHeroes()
-        .then(heroes => this.heroes = heroes);
+        //.then(heroes => this.heroes = heroes);
+        .then((heroes)=>{
+          this.heroes = heroes
+          this.model.id =this.getLastID();
+        });
+        //this.hero.id = this.getLastID();
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.heroService.create(name)
+  // add(name: string): void {
+  //   name = name.trim();
+  //   if (!name) { return; }
+  //   this.heroService.create(name)
+  //     .then(hero => {
+  //       this.heroes.push(hero);
+  //       this.selectedHero = null;
+  //     });
+  // }
+    add(): void {
+    //name = name.trim();
+    if (!this.model) { return; }
+    this.heroService.create(this.model)
       .then(hero => {
-        this.heroes.push(hero);
+        //this.heroes.push();
+        this.getHeroes();
         this.selectedHero = null;
       });
   }
@@ -53,4 +70,15 @@ export class HeroesComponent implements OnInit {
   gotoDetail(): void {
     this.router.navigate(['/hero-detail', this.selectedHero.id]);
   }
+   getLastID():number {
+     let max:number = 0;
+    this.heroes.forEach(function (member, index) {
+            // console.log(member, index);
+            if (member.id > max) {
+                max = member.id;
+                // console.log("Max now: " + max);
+            }
+        });        
+    return max+=1;
+    }
 }

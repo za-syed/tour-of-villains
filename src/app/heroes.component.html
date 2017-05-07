@@ -1,9 +1,30 @@
 <h2>My Heroes</h2>
 <div>
-  <label>Hero name:</label> <input #heroName />
-  <button (click)="add(heroName.value); heroName.value=''">
+
+
+  <!--<label>id:</label> <input #id="ngModel" name="id" id="id" [(ngModel)]="model.id"/>-->
+  <!--<label>Hero name:</label> <input #name="ngModel" name="name" id="name" [(ngModel)]="hero.name"/>-->
+  
+  <div class="form-group-item">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      Hero's' name is required
+    </div>
+     <div class="form-group-item">
+    <label for="name">Power</label>
+    <select name="power" class="form-ontrol" id="power" #power="ngModel" required [(ngModel)] ="model.power">
+      <option *ngFor="let power of powers">{{power}}</option>
+    </select>
+    <!--<input type="text" class="form-control" id="power" required [(ngModel)]="model.power" name="power" #power="ngModel">-->
+    <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+      Hero's' name is required
+    </div>
+     <button [disabled] ="!name.valid" (click)="add(); name.value=''" class="btn btn-primary">
     Add
   </button>
+  </div>
+ 
 </div>
 <ul class="heroes">
   <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
