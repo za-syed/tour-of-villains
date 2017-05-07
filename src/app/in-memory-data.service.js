@@ -5,28 +5,28 @@ var InMemoryDataService = (function () {
     }
     InMemoryDataService.prototype.createDb = function () {
         var heroes = [
-            { id: 11, name: 'Mr. Nice' },
-            { id: 12, name: 'Narco' },
-            { id: 13, name: 'Bombasto' },
-            { id: 14, name: 'Celeritas' },
-            { id: 15, name: 'Magneta' },
-            { id: 16, name: 'RubberMan' },
-            { id: 17, name: 'Dynama' },
-            { id: 18, name: 'Dr IQ' },
-            { id: 19, name: 'Magma' },
-            { id: 20, name: 'Tornado' }
+            { id: 11, name: 'Superman' },
+            { id: 12, name: 'Batman' },
+            { id: 13, name: 'Green Lantern' },
+            { id: 14, name: 'Martian Manhunter' },
+            { id: 15, name: 'Flash' },
+            { id: 16, name: 'Wonder Woman' },
+            { id: 17, name: 'Aquaman' },
+            { id: 18, name: 'Superboy' },
+            { id: 19, name: 'Supergirl' },
+            { id: 20, name: 'Cyborg' }
         ];
         var villains = [
-            { id: 11, name: 'Mr. Nice' },
-            { id: 12, name: 'Narco' },
-            { id: 13, name: 'Bombasto' },
-            { id: 14, name: 'Celeritas' },
-            { id: 15, name: 'Magneta' },
-            { id: 16, name: 'RubberMan' },
-            { id: 17, name: 'Dynama' },
-            { id: 18, name: 'Dr IQ' },
-            { id: 19, name: 'Magma' },
-            { id: 20, name: 'Shahed' }
+            { id: 11, name: 'Lex Luthor' },
+            { id: 12, name: 'Joker' },
+            { id: 13, name: 'Red Lantern' },
+            { id: 14, name: 'Red Martian' },
+            { id: 15, name: 'Captain Cold' },
+            { id: 16, name: 'Mirror Master' },
+            { id: 17, name: 'Darkseid' },
+            { id: 18, name: 'Brainiac' },
+            { id: 19, name: 'General Zod' },
+            { id: 20, name: 'Doomsday' }
         ];
         return { heroes: heroes, villains: villains };
     };

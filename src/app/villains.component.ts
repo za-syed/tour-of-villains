@@ -51,6 +51,6 @@ export class VillainsComponent implements OnInit {
   }
 
   gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedVillain.id]);
+    this.router.navigate(['/villain-detail', this.selectedVillain.id]);
   }
 }

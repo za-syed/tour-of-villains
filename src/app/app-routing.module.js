@@ -12,10 +12,13 @@ var dashboard_component_1 = require("./dashboard.component");
 var heroes_component_1 = require("./heroes.component");
 var hero_detail_component_1 = require("./hero-detail.component");
 var villains_component_1 = require("./villains.component");
+var villain_detail_component_1 = require("./villain-detail.component");
 var routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
     { path: 'detail/:id', component: hero_detail_component_1.HeroDetailComponent },
+    { path: 'hero-detail/:id', component: hero_detail_component_1.HeroDetailComponent },
+    { path: 'villain-detail/:id', component: villain_detail_component_1.VillainDetailComponent },
     { path: 'heroes', component: heroes_component_1.HeroesComponent },
     { path: 'villains', component: villains_component_1.VillainsComponent }
 ];

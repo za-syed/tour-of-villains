@@ -19,24 +19,24 @@ require("rxjs/add/observable/of");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/debounceTime");
 require("rxjs/add/operator/distinctUntilChanged");
-var hero_search_service_1 = require("./hero-search.service");
-var HeroSearchComponent = (function () {
-    function HeroSearchComponent(heroSearchService, router) {
-        this.heroSearchService = heroSearchService;
+var villain_search_service_1 = require("./villain-search.service");
+var VillainSearchComponent = (function () {
+    function VillainSearchComponent(villainSearchService, router) {
+        this.villainSearchService = villainSearchService;
         this.router = router;
         this.searchTerms = new Subject_1.Subject();
     }
     // Push a search term into the observable stream.
-    HeroSearchComponent.prototype.search = function (term) {
+    VillainSearchComponent.prototype.search = function (term) {
         this.searchTerms.next(term);
     };
-    HeroSearchComponent.prototype.ngOnInit = function () {
+    VillainSearchComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.heroes = this.searchTerms
+        this.villains = this.searchTerms
             .debounceTime(300) // wait 300ms after each keystroke before considering the term
             .distinctUntilChanged() // ignore if next search term is same as previous
             .switchMap(function (term) { return term // switch to new observable each time the term changes
-            ? _this.heroSearchService.search(term)
+            ? _this.villainSearchService.search(term)
             : Observable_1.Observable.of([]); })
             .catch(function (error) {
             // TODO: add real error handling
@@ -44,21 +44,21 @@ var HeroSearchComponent = (function () {
             return Observable_1.Observable.of([]);
         });
     };
-    HeroSearchComponent.prototype.gotoDetail = function (hero) {
-        var link = ['/hero-detail', hero.id];
+    VillainSearchComponent.prototype.gotoDetail = function (villain) {
+        var link = ['/villain-detail', villain.id];
         this.router.navigate(link);
     };
-    return HeroSearchComponent;
+    return VillainSearchComponent;
 }());
-HeroSearchComponent = __decorate([
+VillainSearchComponent = __decorate([
     core_1.Component({
-        selector: 'hero-search',
-        templateUrl: './hero-search.component.html',
-        styleUrls: ['./hero-search.component.css'],
-        providers: [hero_search_service_1.HeroSearchService]
+        selector: 'villain-search',
+        templateUrl: './villain-search.component.html',
+        styleUrls: ['./villain-search.component.css'],
+        providers: [villain_search_service_1.VillainSearchService]
     }),
-    __metadata("design:paramtypes", [hero_search_service_1.HeroSearchService,
+    __metadata("design:paramtypes", [villain_search_service_1.VillainSearchService,
         router_1.Router])
-], HeroSearchComponent);
-exports.HeroSearchComponent = HeroSearchComponent;
-//# sourceMappingURL=hero-search.component.js.map
+], VillainSearchComponent);
+exports.VillainSearchComponent = VillainSearchComponent;
+//# sourceMappingURL=villain-search.component.js.map

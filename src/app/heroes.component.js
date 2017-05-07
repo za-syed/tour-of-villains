@@ -53,7 +53,7 @@ var HeroesComponent = (function () {
         this.selectedHero = hero;
     };
     HeroesComponent.prototype.gotoDetail = function () {
-        this.router.navigate(['/detail', this.selectedHero.id]);
+        this.router.navigate(['/hero-detail', this.selectedHero.id]);
     };
     return HeroesComponent;
 }());

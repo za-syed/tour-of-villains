@@ -1,9 +1,18 @@
 <h3>Top Heroes</h3>
 <div class="grid grid-pad">
-  <a *ngFor="let hero of heroes"  [routerLink]="['/detail', hero.id]"  class="col-1-4">
+  <a *ngFor="let hero of heroes"  [routerLink]="['/hero-detail', hero.id]"  class="col-1-4">
     <div class="module hero">
       <h4>{{hero.name}}</h4>
     </div>
   </a>
 </div>
 <hero-search></hero-search>
+<h3>Top Villains</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let villain of villains"  [routerLink]="['/villain-detail', villain.id]"  class="col-1-4">
+    <div class="module hero">
+      <h4>{{villain.name}}</h4>
+    </div>
+  </a>
+</div>
+<villain-search></villain-search>

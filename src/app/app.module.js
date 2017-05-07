@@ -22,6 +22,8 @@ var hero_detail_component_1 = require("./hero-detail.component");
 var hero_service_1 = require("./hero.service");
 var villain_service_1 = require("./villain.service");
 var hero_search_component_1 = require("./hero-search.component");
+var villain_detail_component_1 = require("./villain-detail.component");
+var villain_search_component_1 = require("./villain-search.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -40,8 +42,10 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             dashboard_component_1.DashboardComponent,
             hero_detail_component_1.HeroDetailComponent,
+            villain_detail_component_1.VillainDetailComponent,
             heroes_component_1.HeroesComponent,
             villains_component_1.VillainsComponent,
+            villain_search_component_1.VillainSearchComponent,
             hero_search_component_1.HeroSearchComponent
         ],
         providers: [hero_service_1.HeroService, villain_service_1.VillainService],

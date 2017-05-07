@@ -12,21 +12,21 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { HeroSearchService } from './hero-search.service';
-import { Hero } from './hero';
+import { VillainSearchService } from './villain-search.service';
+import { Villain } from './villain';
 
 @Component({
-  selector: 'hero-search',
-  templateUrl: './hero-search.component.html',
-  styleUrls: [ './hero-search.component.css' ],
-  providers: [HeroSearchService]
+  selector: 'villain-search',
+  templateUrl: './villain-search.component.html',
+  styleUrls: [ './villain-search.component.css' ],
+  providers: [VillainSearchService]
 })
-export class HeroSearchComponent implements OnInit {
-  heroes: Observable<Hero[]>;
+export class VillainSearchComponent implements OnInit {
+  villains: Observable<Villain[]>;
   private searchTerms = new Subject<string>();
 
   constructor(
-    private heroSearchService: HeroSearchService,
+    private villainSearchService: VillainSearchService,
     private router: Router) {}
 
   // Push a search term into the observable stream.
@@ -35,23 +35,23 @@ export class HeroSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.heroes = this.searchTerms
+    this.villains = this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time the term changes
         // return the http search observable
-        ? this.heroSearchService.search(term)
+        ? this.villainSearchService.search(term)
         // or the observable of empty heroes if there was no search term
-        : Observable.of<Hero[]>([]))
+        : Observable.of<Villain[]>([]))
       .catch(error => {
         // TODO: add real error handling
         console.log(error);
-        return Observable.of<Hero[]>([]);
+        return Observable.of<Villain[]>([]);
       });
   }
 
-  gotoDetail(hero: Hero): void {
-    let link = ['/hero-detail', hero.id];
+  gotoDetail(villain: Villain): void {
+    let link = ['/villain-detail', villain.id];
     this.router.navigate(link);
   }
 }

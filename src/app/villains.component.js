@@ -53,7 +53,7 @@ var VillainsComponent = (function () {
         this.selectedVillain = villain;
     };
     VillainsComponent.prototype.gotoDetail = function () {
-        this.router.navigate(['/detail', this.selectedVillain.id]);
+        this.router.navigate(['/villain-detail', this.selectedVillain.id]);
     };
     return VillainsComponent;
 }());

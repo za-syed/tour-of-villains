@@ -1,0 +1,10 @@
+<div id="villain-search-component">
+  <h4>Villain Search</h4>
+  <input #villainSearchBox id="villain-search-box" (keyup)="search(villainSearchBox.value)" />
+  <div>
+    <div *ngFor="let villain of villains | async"
+         (click)="gotoDetail(villain)" class="search-result" >
+      {{villain.name}}
+    </div>  
+  </div>
+</div>
