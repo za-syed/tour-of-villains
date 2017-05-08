@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 
 import { Hero }                from './hero';
+import { Customer } from "./customer";
 import { HeroService }         from './hero.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class HeroesComponent implements OnInit {
   powers:string[]=['Flying','Invisibility', 'Fire', 'Immortality','Super Strength'];
   selectedHero: Hero;
   model:Hero ={id: 0, name:""};
+  customers: Customer[];
 
   constructor(
     private heroService: HeroService,
@@ -28,6 +30,12 @@ export class HeroesComponent implements OnInit {
           this.model.id =this.getLastID();
         });
         //this.hero.id = this.getLastID();
+      //   this.heroService
+      //   .getCustomers()
+      //   .then((customers)=>{
+      //     this.customers=customers;
+      //   });
+      //  alert(JSON.stringify(this.customers));
   }
 
   // add(name: string): void {

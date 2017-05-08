@@ -17,11 +17,21 @@ var HeroService = (function () {
         this.http = http;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.heroesUrl = 'api/heroes'; // URL to web api
+        this.customersUrl = 'http://localhost:3000';
     }
     HeroService.prototype.getHeroes = function () {
         return this.http.get(this.heroesUrl)
             .toPromise()
             .then(function (response) { return response.json().data; })
+            .catch(this.handleError);
+    };
+    HeroService.prototype.getCustomers = function () {
+        return this.http.get(this.customersUrl + "/getCustomers")
+            .toPromise()
+            .then(function (response) {
+            var cust = response.json().data;
+            return cust;
+        }, function (error) { })
             .catch(this.handleError);
     };
     HeroService.prototype.getHero = function (id) {
@@ -55,7 +65,7 @@ var HeroService = (function () {
             .post(this.heroesUrl, JSON.stringify({ id: hero.id, name: hero.name, power: hero.power }), { headers: this.headers })
             .toPromise()
             .then(function (res) {
-            res.json().data;
+            return res.json().data;
         }, function (err) {
         })
             .catch(this.handleError);

@@ -28,6 +28,12 @@ var HeroesComponent = (function () {
             _this.model.id = _this.getLastID();
         });
         //this.hero.id = this.getLastID();
+        //   this.heroService
+        //   .getCustomers()
+        //   .then((customers)=>{
+        //     this.customers=customers;
+        //   });
+        //  alert(JSON.stringify(this.customers));
     };
     // add(name: string): void {
     //   name = name.trim();

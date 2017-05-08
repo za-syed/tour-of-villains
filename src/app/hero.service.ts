@@ -4,12 +4,14 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Hero } from './hero';
+import { Customer } from "./customer";
 
 @Injectable()
 export class HeroService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private heroesUrl = 'api/heroes';  // URL to web api
+  private customersUrl = 'http://localhost:3000'; 
 
   constructor(private http: Http) { }
 
@@ -17,6 +19,17 @@ export class HeroService {
     return this.http.get(this.heroesUrl)
                .toPromise()
                .then(response => response.json().data as Hero[])
+               .catch(this.handleError);
+  }
+  getCustomers(): Promise<Customer[]> {
+    return this.http.get(`${this.customersUrl}/getCustomers`)
+               .toPromise()
+               .then(
+                 (response) => {
+                  let cust:Customer[] =  response.json().data as Customer[];                   
+                  return cust;
+                },
+                (error)=>{})
                .catch(this.handleError);
   }
 
@@ -55,7 +68,7 @@ export class HeroService {
       .toPromise()
       //.then(res => res.json().data as Hero)
       .then((res)=>{
-        res.json().data as Hero;
+       return res.json().data as Hero;
       },(err)=>{
 
       })
